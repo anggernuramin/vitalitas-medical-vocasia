@@ -1,4 +1,4 @@
-import { Eye, EyeSlash } from "phosphor-react";
+import { Eye, EyeSlash, X } from "phosphor-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -9,6 +9,7 @@ import { useState } from "react";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [notifUserLogin, setNotifUserLogin] = useState(false);
   const navigate = useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -20,34 +21,77 @@ const Login = () => {
       remember: false,
     },
     validationSchema: yup.object().shape({
-      email: yup
-        .string()
-        .required()
-        .email("Email yang anda masukkan tidak valid"),
-      password: yup
-        .string()
-        .required()
-        .min(8, "Sebaiknya sandi 8 character")
-        .matches(/[a-z]/g, "Sebaiknya sandi ada 1 huruf kecil")
-        .matches(/[A-Z]/g, "Sebaiknya sandi ada 1 huruf Besar")
-        .matches(/[0-9]/g, "Sebaiknya ada 1 number")
-        .matches(/^\S*$/, "tidak boleh ada spasi"),
-      remember: yup.bool().isTrue("harus di checked"),
+      email: yup.string().required().email("Your email is not valid"),
+      password: yup.string().required(),
+      remember: yup.bool().isTrue("Must be checked."),
     }),
     onSubmit: loginUser,
   });
 
-  function loginUser(values) {
+  async function loginUser(values) {
+    const userId = localStorage.getItem("userId");
+    console.log("users", userId);
+    try {
+      const response = await fetch(`http://localhost:3000/users/${userId}`);
+      const result = await response.json();
+
+      if (values.email == result.email && values.password == result.password) {
+        console.log("true");
+        navigate("/");
+      } else {
+        setNotifUserLogin(true);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
     console.log("values formik", values);
-    navigate("/");
   }
+
+  const closeModal = () => {
+    setNotifUserLogin(false);
+  };
+
+  const ModalBox = () => {
+    return (
+      <>
+        <div className="absolute top-0 right-0 bottom-0 left-0 bg-slate-900 opacity-50 z-30 "></div>
+        <div className="absolute w-[80%] md:w-[60%] container mx-auto z-40 rounded-sm top-[-8%] left-[50%] translate-x-[-50%] translate-y-[50%] bg-slate-100">
+          <div className="flex flex-col gap-3 ">
+            <div className="flex px-5 pt-5 justify-between items-center">
+              <h2 className="text-2xl">Warning</h2>
+              <X
+                size={24}
+                className="cursor-pointer hover:text-color-primary90"
+                onClick={closeModal}
+              />
+            </div>
+            <hr />
+            <p className="mx-5 p-5 rounded-sm bg-warning">
+              Gagal melakukan proses autentikasi. Mohon untuk mengisi email &
+              password dengan benar.
+            </p>
+            <hr />
+            <div className="flex justify-end items-end px-5 mb-3">
+              <button
+                onClick={closeModal}
+                className="btn btn-ghost bg-slate-300 text-md"
+              >
+                Ok
+              </button>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
 
   return (
     <Layout>
       <Header
         title={"Welcome Back"}
-        description={"Masukkan email dan password anda untuk proses login"}
+        description={"Enter your email and password for the login process"}
       />
+
       <form onSubmit={formik.handleSubmit} className="mt-3 flex flex-col gap-3">
         <div className="flex flex-col text-color-coolGray90">
           <label htmlFor="email" className="text-sm mb-2">
@@ -63,7 +107,9 @@ const Login = () => {
             placeholder="anggern514@gmail.com"
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-error">{formik.errors.email}</p>
+            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+              {formik.errors.email}
+            </p>
           ) : null}
         </div>
         <div className="flex flex-col text-color-coolGray90">
@@ -95,16 +141,13 @@ const Login = () => {
             )}
 
             {formik.touched.password && formik.errors.password ? (
-              <p className="text-error">{formik.errors.password}</p>
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+                {formik.errors.password}
+              </p>
             ) : null}
-
-            <p className="text-color-coolGray60 text-sm mt-1">
-              It must be a combination of minimum 8 letters, numbers, and
-              symbols.
-            </p>
           </div>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="mt-2 flex justify-between items-center">
           <div>
             <div className="flex gap-1 text-base text-color-coolGray90">
               <input
@@ -114,15 +157,17 @@ const Login = () => {
                 name="remember"
                 checked={formik.values.remember}
               />
-              <p>Remember me</p>
+              <p className="text-sm sm:text-base">Remember me</p>
             </div>
             {formik.touched.remember && formik.errors.remember && (
-              <p className="text-error">{formik.errors.remember}</p>
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base  text-error">
+                {formik.errors.remember}
+              </p>
             )}
           </div>
           <Link
             to={"/"}
-            className="text-color-coolGray90 cursor-pointer hover:text-color-primary90 text-base transition-all"
+            className="text-sm sm:text-base text-color-coolGray90 cursor-pointer hover:text-color-primary90  transition-all"
           >
             Forgot Password ?
           </Link>
@@ -130,15 +175,15 @@ const Login = () => {
 
         <button
           type="submit"
-          className="w-full text-white rounded-sm text-lg bg-color-primary90 text-center p-2 hover:opacity-90 transition-all cursor-pointer"
+          className="mt-5 w-full text-white rounded-sm text-lg bg-color-primary90 text-center p-2 hover:opacity-90 transition-all cursor-pointer"
         >
           Log In
         </button>
       </form>
-
+      {notifUserLogin ? <ModalBox /> : null}
       <Footer
         text={"No account yet?"}
-        namePath={"Sign Up"}
+        namePath={"Register"}
         path={"/register"}
       />
     </Layout>

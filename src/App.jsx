@@ -1,7 +1,6 @@
-import Hero from "./components/navbar/Hero";
-import Servis from "./components/navbar/Servis";
-import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/footer-page/Footer";
+import Hero from "./components/feature/Hero";
+import Servis from "./components/feature/Servis";
+import Navbar from "./components/feature/Navbar";
 
 function App() {
   return (
@@ -9,7 +8,6 @@ function App() {
       <Navbar />
       <Hero />
       <Servis />
-      <Footer />
     </>
   );
 }
