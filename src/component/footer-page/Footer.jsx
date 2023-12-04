@@ -21,7 +21,7 @@ const Footer = () => {
 
           <button
             className="bg-black-400 hover:bg-gray-500 duration-300 px-5 py-2.5 font-[Poppins]
-           rounded-md text-white md:w-auto w-full bg-black"
+            rounded-md text-white md:w-auto w-full bg-black"
           >
             Subscribe
           </button>
