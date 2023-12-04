@@ -1,16 +1,15 @@
 import Hero from "./components/navbar/Hero";
 import Servis from "./components/navbar/Servis";
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./component/footer-page/Footer";
-
+import Footer from "./components/footer-page/Footer";
 
 function App() {
   return (
     <>
-   <Navbar />
-   <Hero />
-   <Servis />
-     <Footer />
+      <Navbar />
+      <Hero />
+      <Servis />
+      <Footer />
     </>
   );
 }

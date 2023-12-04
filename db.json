@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1701339169310,
+      "email": "anggernuramin49@gmail.com",
+      "password": "Angger123",
+      "firstName": "Angger",
+      "lastName": "Nur Amin"
+    },
+    {
+      "id": 1701339422825,
+      "email": "anggern514@gmail.com",
+      "password": "Vindi123",
+      "firstName": "Vindi",
+      "lastName": "Aprilia"
+    },
+    {
+      "id": 1701348693288,
+      "email": "angger@gmail.com",
+      "password": "Angge234",
+      "firstName": "Barbara",
+      "lastName": "Yayak"
+    },
+    {
+      "id": 1701348865533,
+      "email": "angger@gmail.com",
+      "password": "VindiBaru123",
+      "firstName": "Vindi",
+      "lastName": "Baru"
+    },
+    {
+      "id": 1701687391635,
+      "email": "coba@gmail.com",
+      "password": "Angger123",
+      "firstName": "coba",
+      "lastName": "satu"
+    }
+  ]
+}
