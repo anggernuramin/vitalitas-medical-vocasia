@@ -27,6 +27,9 @@ export default {
           coolGray100: "#121619",
         },
       },
+      font : {
+        bolds : '800',
+      },
     },
   },
   plugins: [daisyui],

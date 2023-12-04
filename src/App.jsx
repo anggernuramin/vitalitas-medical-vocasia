@@ -1,12 +1,14 @@
+import Hero from "./components/feature/Hero";
+import Servis from "./components/feature/Servis";
+import Navbar from "./components/feature/Navbar";
+
 function App() {
   return (
-    <main>
-      <section className="bg-white">
-        <div className="container bg-color-primary90">
-          <h1>Create Branch Develop</h1>
-        </div>
-      </section>
-    </main>
+    <>
+   <Navbar />
+   <Hero />
+   <Servis />
+    </>
   );
 }
 
