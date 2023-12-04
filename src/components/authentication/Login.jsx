@@ -67,8 +67,8 @@ const Login = () => {
             </div>
             <hr />
             <p className="mx-5 p-5 rounded-sm bg-warning">
-              Gagal melakukan proses autentikasi. Mohon untuk mengisi email &
-              password dengan benar.
+              Authentication process failed. Please fill in your email and
+              password correctly.
             </p>
             <hr />
             <div className="flex justify-end items-end px-5 mb-3">
