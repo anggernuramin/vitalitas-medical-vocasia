@@ -6,7 +6,7 @@ import Footer from "./Footer";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Eye, EyeSlash } from "phosphor-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, json, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,25 +24,49 @@ const Register = () => {
     validationSchema: yup.object().shape({
       firstName: yup.string().required("first name not empty").min(3).max(10),
       lastName: yup.string().required("last name not empty"),
-      email: yup
-        .string()
-        .required()
-        .email("Email yang anda masukkan tidak valid"),
+      email: yup.string().required().email("Your email is not valid"),
       password: yup
         .string()
         .required()
-        .min(8, "Sebaiknya sandi 8 character")
-        .matches(/[a-z]/g, "Sebaiknya sandi ada 1 huruf kecil")
-        .matches(/[A-Z]/g, "Sebaiknya sandi ada 1 huruf Besar")
-        .matches(/[0-9]/g, "Sebaiknya ada 1 number")
-        .matches(/^\S*$/, "tidak boleh ada spasi"),
+        .min(8, "Password must be 8 characters long.")
+        .matches(/[a-z]/g, "Password must at least 1 lowercase letter.")
+        .matches(/[A-Z]/g, "Password must at least 1 uppercase letter.")
+        .matches(/[0-9]/g, "Password must at least 1 number.")
+        .matches(/^\S*$/, "Spaces are not allowed in the password."),
     }),
     onSubmit: registerUser,
   });
 
-  function registerUser(values) {
-    console.log("values formik", values);
-    navigate("/");
+  const generateId = () => {
+    return +new Date();
+  };
+
+  async function registerUser(values) {
+    const user = {
+      id: generateId(),
+      ...values,
+    };
+    try {
+      const response = await fetch(
+        "https://7r2zzs8p-3000.asse.devtunnels.ms/users",
+        {
+          method: "post",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      localStorage.setItem("userId", result.id);
+      navigate("/");
+      console.log("response", result);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
@@ -51,9 +75,9 @@ const Register = () => {
         title={"Sign Up Free"}
         description={"14 day free access to unlimited resources"}
       />
-      <form onSubmit={formik.handleSubmit} className="mt-3 flex flex-col">
+      <form onSubmit={formik.handleSubmit} className="mt-3 flex flex-col gap-3">
         <div className="flex justify-between items-center text-color-coolGray90 w-full ">
-          <div className="w-[45%]">
+          <div className="w-[48%] sm:w-[45%]">
             <label htmlFor="firstName" className="text-sm mb-2">
               First Name
             </label>
@@ -63,14 +87,16 @@ const Register = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.firstName}
-              className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-semibold w-full"
+              className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-normal w-full"
               placeholder="first name"
             />
             {formik.touched.firstName && formik.errors.firstName ? (
-              <p className="text-error">{formik.errors.firstName}</p>
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+                {formik.errors.firstName}
+              </p>
             ) : null}
           </div>
-          <div className="w-[45%]">
+          <div className="w-[48%] sm:w-[45%]">
             <label htmlFor="lastName" className="text-sm mb-2">
               Last Name
             </label>
@@ -80,11 +106,13 @@ const Register = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.lastName}
-              className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-semibold w-full"
+              className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-normal w-full"
               placeholder="last name"
             />
             {formik.touched.lastName && formik.errors.lastName ? (
-              <p className="text-error">{formik.errors.lastName}</p>
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+                {formik.errors.lastName}
+              </p>
             ) : null}
           </div>
         </div>
@@ -98,11 +126,13 @@ const Register = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-semibold"
+            className="bg-color-coolGray10 text-color-coolGray90 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-normal"
             placeholder="anggern514@gmail.com"
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-error">{formik.errors.email}</p>
+            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+              {formik.errors.email}
+            </p>
           ) : null}
         </div>
         <div className="flex flex-col text-color-coolGray90">
@@ -116,7 +146,7 @@ const Register = () => {
               onBlur={formik.handleBlur}
               name="password"
               value={formik.values.password}
-              className="w-full bg-color-coolGray10 text-color-coolGray60 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-semibold"
+              className="w-full bg-color-coolGray10 text-color-coolGray60 p-2 outline-none border-b-2 border-color-coolGray30 rounded-sm placeholder:text-color-coolGray40 placeholder:font-normal"
               placeholder="*******"
             />
             {!showPassword ? (
@@ -134,7 +164,9 @@ const Register = () => {
             )}
 
             {formik.touched.password && formik.errors.password ? (
-              <p className="text-error">{formik.errors.password}</p>
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+                {formik.errors.password}
+              </p>
             ) : null}
 
             <p className="text-color-coolGray60 text-sm mt-1">
