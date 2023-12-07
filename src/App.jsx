@@ -1,4 +1,7 @@
+import Profile from "./profile/profile";
+import Contact from "./contact/contact";
 import Footer from "./component/footer-page/Footer";
+
 
 function App() {
   return (
@@ -8,6 +11,8 @@ function App() {
           <h1>Create Branch Develop</h1>
         </div>
         <div>
+          <Profile />
+          <Contact />
           <Footer />
         </div>
       </section>
