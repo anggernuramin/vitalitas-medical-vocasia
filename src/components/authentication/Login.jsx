@@ -32,7 +32,9 @@ const Login = () => {
     const userId = localStorage.getItem("userId");
     console.log("users", userId);
     try {
-      const response = await fetch(`http://localhost:3000/users/${userId}`);
+      const response = await fetch(
+        `https://restful-api-project-dental-clinic.vercel.app/users/${userId}`
+      );
       const result = await response.json();
 
       if (values.email == result.email && values.password == result.password) {

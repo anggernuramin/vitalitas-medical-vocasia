@@ -12,7 +12,7 @@ export default {
         color: {
           primary90: "#B97375",
           primary30: "#F0DEDF1A",
-          primary10: "#F0DEDF",
+          primary10: "#F1E4E8",
           black: "#003D87",
           overlay: "#121619",
           coolGray10: "#F2F4F8",
