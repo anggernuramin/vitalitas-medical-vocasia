@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/authentication/Login.jsx";
 import Register from "./components/authentication/Register.jsx";
-
+import AppointmentPage from "./components/Modal/AppointmentPage.jsx";
 const app = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +20,8 @@ const app = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  { path: "/appointment", element: <AppointmentPage /> }
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
