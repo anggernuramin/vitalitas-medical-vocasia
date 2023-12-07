@@ -48,7 +48,7 @@ const Register = () => {
     };
     try {
       const response = await fetch(
-        "https://7r2zzs8p-3000.asse.devtunnels.ms/users",
+        "https://restful-api-project-dental-clinic.vercel.app/users/",
         {
           method: "post",
           headers: {
@@ -57,6 +57,7 @@ const Register = () => {
           body: JSON.stringify(user),
         }
       );
+      console.log("response", response);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
