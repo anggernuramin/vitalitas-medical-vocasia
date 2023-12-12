@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Navbar from "../navbar/Navbar";
+import Footer from "../footer-page/Footer";
 
 const AppointmentPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -132,6 +134,7 @@ const AppointmentPage = () => {
 
   return (
     <>
+      <Navbar />
       <div
         className="relative"
         style={{
@@ -142,7 +145,7 @@ const AppointmentPage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          marginTop: "-15vh",
+          marginTop: "0vh",
           backgroundColor: "#FFFFFF",
         }}
       >
@@ -197,16 +200,15 @@ const AppointmentPage = () => {
         </div>
       </div>
 
-     
       <div
         style={{
-          backgroundColor: "#FFFFFF", 
-          minHeight: "45vh", 
+          backgroundColor: "#FFFFFF",
+          minHeight: "45vh",
         }}
       ></div>
 
-
       {showModal && renderModalContent()}
+      <Footer />
     </>
   );
 };
