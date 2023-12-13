@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer-page/Footer";
+import privateRoute from "../../hoc/privateRoute";
 
 const AppointmentPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -213,4 +214,4 @@ const AppointmentPage = () => {
   );
 };
 
-export default AppointmentPage;
+export default privateRoute(AppointmentPage);
