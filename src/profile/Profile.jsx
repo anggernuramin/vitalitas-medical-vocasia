@@ -27,7 +27,7 @@ const Profile = () => {
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#000000" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
             </div>
-            <Link className="border-none btn btn-active  bg-[#B97375] mt-5 mx-auto text-white hover:bg-pink-400" to="/efisiensi">semua review</Link>
+            <Link className="border-none btn btn-active  bg-[#B97375] mt-5 mx-auto text-white hover:bg-pink-400" to="/pelayanan">semua review</Link>
         </div>
     );
 }

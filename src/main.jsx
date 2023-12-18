@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import App from './App'
-import { EfisienWaktu, Fasilitas, Harga, KebersihanFasilitas, PelDokterStaf } from './review'
+import AllReview  from './review/AllReview'
 
 
 
@@ -12,11 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
    <BrowserRouter>
       <Routes>
           <Route path='/' element={<App />} />
-          <Route path='/pelayanan' element={<PelDokterStaf />} />
-          <Route path='/kebersihan' element={<KebersihanFasilitas />} />
-          <Route path='/efisiensi' element={<EfisienWaktu />} />
-          <Route path='/harga' element={<Harga />} />
-          <Route path='/kelengkapan' element={<Fasilitas />} />
+          <Route path='/pelayanan' element={<AllReview />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
