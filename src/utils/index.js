@@ -60,7 +60,7 @@ export const register = async({name,email,password}) => {
 
     if(responseJson !== 'successs'){
         // alert(responseJson.message)
-        return {error: true}
+        return {error: true,message: responseJson.message}
     }
 
     return {error: false}

@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 import React, { useEffect } from "react";
-import { useContextUser } from "../context/auth";
+import { useContextUser } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
-const privateRoute = (Component) => {
+const AuthPrivateRoute = (Component) => {
   return () => {
     const navigate = useNavigate();
     const { user } = useContextUser();
@@ -18,4 +19,4 @@ const privateRoute = (Component) => {
   };
 };
 
-export default privateRoute;
+export default AuthPrivateRoute;

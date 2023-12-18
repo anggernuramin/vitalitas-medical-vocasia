@@ -1,6 +1,35 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { User, SignOut, Bell } from "phosphor-react";
+import { useContextUser } from "../../context/auth-context";
 
 const Navbar = () => {
+  const { user } = useContextUser();
+  const navigate = useNavigate();
+  let [yourLogin, setYourLogin] = useState(1);
+  let total = 0;
+  const countLogin = () => {
+    total = yourLogin + 1;
+    if (total > 10) {
+      total = 0;
+      yourLogin = 0;
+      setYourLogin(yourLogin + 1);
+    } else {
+      setYourLogin(yourLogin + 1);
+    }
+  };
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    if (localStorage.getItem("accessToken") != null) {
+      alert("Failed");
+    } else {
+      alert("Made it out");
+      navigate("/login");
+      window.location.reload();
+    }
+  };
+
   return (
     <div className="navbar bg-base-100 fixed z-50">
       <div className="navbar-start hidden lg:flex ml-10">
@@ -47,28 +76,56 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a
-          href="#"
+        <Link
+          to={"/"}
           className="btn btn-ghost text-xl text-color-primary90 font-bold hover:bg-white"
         >
           VinZeta
-        </a>
+        </Link>
       </div>
-
-      <div className="navbar-end mr-10 flex-row gap-2 hidden lg:flex ">
-        <a
-          href="/login"
-          className="btn hover:bg-white bg-white border-none text-color-primary90"
-        >
-          Login
-        </a>
-        <a
-          href="/register"
-          className="btn hover:bg-color-primary90 bg-color-primary90 text-color-coolGray10 rounded-none"
-        >
-          Sign Up
-        </a>
-      </div>
+      {user ? (
+        <div className="navbar-end mr-10 flex-row gap-8 hidden lg:flex ">
+          <button
+            onClick={countLogin}
+            className="bt text-color-primary90 relative"
+          >
+            <Link to={"/riwayat-appointment"}>
+              <Bell size={30} color="#B97375" weight="bold" />
+            </Link>
+            <span className="absolute -top-1 right-0 font-bold text-sm bg-color-primary10 text-color-primary90 py-0 px-1 m-0 rounded-full ">
+              {yourLogin}
+            </span>
+          </button>
+          <a
+            href="/profile"
+            className="btn bg-color-primary90 rounded-full px-2 py-1"
+          >
+            <span>
+              <User size={30} color="#fff" weight="bold" />
+            </span>
+          </a>
+          <button onClick={logout} className="btn rounded-full px-2 py-1">
+            <span>
+              <SignOut size={30} color="#B97375" weight="bold" />
+            </span>
+          </button>
+        </div>
+      ) : (
+        <div className="navbar-end mr-10 flex-row gap-2 hidden lg:flex ">
+          <a
+            href="/login"
+            className="btn hover:bg-white bg-white border-none text-color-primary90"
+          >
+            Login
+          </a>
+          <a
+            href="/register"
+            className="btn hover:bg-color-primary90 bg-color-primary90 text-color-coolGray10 rounded-none"
+          >
+            Sign Up
+          </a>
+        </div>
+      )}
     </div>
   );
 };
