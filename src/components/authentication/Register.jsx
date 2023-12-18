@@ -8,10 +8,14 @@ import * as yup from "yup";
 import { Eye, EyeSlash } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../utils";
+import ModalBox from "./ModalBox";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [responseMessageError, setResponseMessageError] = useState("");
+  const [notifUserLogin, setNotifUserLogin] = useState(false);
+
   const navigate = useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -55,11 +59,17 @@ const Register = () => {
       password: values.password,
     });
     if (response.error) {
+      setResponseMessageError(response.message);
       setLoading(false);
-    } else {
+      setNotifUserLogin(true);
+    }
+    if (response.message == "User created successfully") {
       navigate("/login");
     }
   }
+  const closeModal = () => {
+    setNotifUserLogin((notifUserLogin) => !notifUserLogin);
+  };
 
   return (
     <Layout>
@@ -154,6 +164,12 @@ const Register = () => {
           {loading ? "Loading..." : "Daftar"}
         </button>
       </form>
+      {notifUserLogin ? (
+        <ModalBox
+          responseMessageError={responseMessageError}
+          closeModal={closeModal}
+        />
+      ) : null}
       <Footer namePath={"Sudah memiliki akun?"} path={"/login"} />
     </Layout>
   );

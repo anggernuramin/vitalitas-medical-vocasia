@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import { getUserLogged, putAccesToken, getTokenUsername } from "../utils";
+
 export const AuthContext = createContext();
 
 export const useContextUser = () => {
@@ -29,13 +30,14 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      console.log(user);
-      console.log("ada user");
+      // console.log(user);
+      // console.log("ada user");
     } else {
-      console.log("tidak ada user");
+      // console.log("tidak ada user");
     }
   }, [user]);
 
+  // cleanUp useEffect ,useMemo // hapus dark dari daisy ui
   const initialValue = {
     user,
     setUser,
