@@ -9,6 +9,7 @@ import AppointmentPage from "./components/Modal/AppointmentPage.jsx";
 import { ContextProvider } from "./context/auth-context.jsx";
 import ReviewPage from "./pages/ReviewPage.jsx";
 import RiwayatPage from "./pages/RiwayatPage.jsx";
+import { DataAppoinmentProvider } from "./context/data-appoinment.jsx";
 const app = createBrowserRouter([
   {
     path: "/",
@@ -31,7 +32,9 @@ const app = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ContextProvider>
-      <RouterProvider router={app} />
+      <DataAppoinmentProvider>
+        <RouterProvider router={app} />
+      </DataAppoinmentProvider>
     </ContextProvider>
   </React.StrictMode>
 );

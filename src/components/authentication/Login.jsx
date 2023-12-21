@@ -5,13 +5,13 @@ import * as yup from "yup";
 import Layout from "./Layout";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "../../utils";
 import ModalBox from "./ModalBox";
 import { useContextUser } from "../../context/auth-context";
 
 const Login = () => {
-  const { onLogginSuccess } = useContextUser();
+  const { user, onLogginSuccess } = useContextUser();
   const [showPassword, setShowPassword] = useState(false);
   const [responseMessageError, setResponseMessageError] = useState("");
   const [notifUserLogin, setNotifUserLogin] = useState(false);
@@ -20,6 +20,13 @@ const Login = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+
+  useEffect(() => {
+    if (user) {
+      console.log("user", user);
+      // navigate("/");
+    }
+  }, []);
   const formik = useFormik({
     initialValues: {
       email: "",

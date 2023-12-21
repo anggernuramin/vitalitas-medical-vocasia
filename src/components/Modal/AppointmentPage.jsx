@@ -3,13 +3,12 @@
 import React, { useState } from "react";
 import Navbar from "../navbar/Navbar";
 import Footer from "../footer-page/Footer";
+import { doctorInfoData } from "../../utils/ListDokter";
+import { useDataAppoinment } from "../../context/data-appoinment";
 
-const DoctorProfile = ({ onSelectDoctor }) => {
-  const [selectedDoctor, setSelectedDoctor] = useState("");
-
+const DoctorProfile = ({ onSelectDoctor, selectedDoctor }) => {
   const handleDoctorChange = (e) => {
     const selectedValue = e.target.value;
-    setSelectedDoctor(selectedValue);
     onSelectDoctor(selectedValue);
   };
 
@@ -31,8 +30,9 @@ const DoctorProfile = ({ onSelectDoctor }) => {
         onChange={handleDoctorChange}
         className="select select-success w-full max-w-xs"
         style={{ backgroundColor: "white" }}
+        defaultValue=""
       >
-        <option disabled value="" selected>
+        <option disabled value="" defaultValue>
           Pilih dokter
         </option>
         <option value="drg. siti Kumala, SpKGA">drg. siti Kumala, SpKGA</option>
@@ -53,56 +53,13 @@ const DoctorProfile = ({ onSelectDoctor }) => {
 };
 
 const DoctorInfo = ({ selectedDoctor, onCloseInfo }) => {
-  const doctorInfoData = {
-    "drg. siti Kumala, SpKGA": {
-      image: "url('./dok.jpg')",
-      alamat: "Jl. Coklat No. 123",
-      spesialisasi: "dokter gigi anak",
-      Pengalaman: "6 tahun menjadi spesialis dokter gigi anak ",
-    },
-    "drg. Randi Ardian, SpKG": {
-      image: "url('../../public/dokter2.jpg')",
-      alamat: "Jl. Mentari No. 456",
-      spesialisasi: "konservasi gigi",
-      Pengalaman:
-        "4 tahun berkerja menangani perawatan saraf gigi,pemasangan mahkota gigi & pemutihan gigi",
-    },
-    "drg. Angga Ramdan, SpOrt": {
-      image: "url('../../public/dokter3.jpg')",
-      alamat: "Jl. Budi Luhur No. 789",
-      spesialisasi: "dokter Spesialis Ortodonti",
-      Pengalaman:
-        "5 tahun dalam  menangani perwatan gigi kawat,aligner atau penggunaan behel lepas pasang",
-    },
-    "drg. Ayunda Pratiwi, SpPerio": {
-      image: "url('../../public/dokter4.jpg')",
-      alamat: "Jl. Gunung Sinabung No. 1011",
-      spesialisasi: "dokter spesialis Periodonsia",
-      Pengalaman:
-        "6 tahun dalam mengatasi gusi & perawan scaling dan root planing,cangkok gusi,pemasangan implan gigi",
-    },
-    "drg. Juanda, SpPros": {
-      image: "url('../../public/dokter5.jpg')",
-      alamat: "Jl. Manggis No. 1213",
-      spesialisasi: "dokter spesialis  prostodonsia",
-      Pengalaman:
-        "Bekerja 5 tahun  mengatasi Penggantian gigi yang hilang atau membuat gigi tiruan dan pemasangan veneer.",
-    },
-    "drg. Yuda Argatama, SpKG": {
-      image: "url('../../public/dokter6.jpg')",
-      alamat: "Jl. BUdi Luhur No. 115",
-      spesialisasi: "konservasi gigi",
-      Pengalaman:
-        "Bekerja 6 thn dalam perawatan saraf gigi,pemasangan mahkota & pemutihan gigi",
-    },
-  };
   const doctorInfoStyles = {
     backgroundColor: "#B97375",
     color: "white",
     padding: "15px",
     borderRadius: "15%",
     position: "absolute",
-    top: "60%",
+    top: "70%",
     left: "87%",
     width: "25%",
     transform: "translate(-50%, -50%)",
@@ -123,14 +80,16 @@ const DoctorInfo = ({ selectedDoctor, onCloseInfo }) => {
       >
         tutup
       </button>
-      <div className="w-full">
+      <div className="w-full p-5">
         <div
           className="bg-cover bg-center h-32 rounded-full"
-          style={{
-            backgroundImage: `url(${doctorData.image})`,
-            border: "1px solid #fff",
-          }}
-        />
+          // style={{
+          //   // backgroundImage: url(`${doctorData.image}`),
+          //   border: "1px solid #fff",
+          // }}
+        >
+          <img src={doctorData?.image} />
+        </div>
       </div>
       <div className="mt-4 ml-4">
         <h2 className="text-xl font-bold">
@@ -146,12 +105,15 @@ const DoctorInfo = ({ selectedDoctor, onCloseInfo }) => {
 };
 
 const AppointmentPage = () => {
+  const { dataAppoinment, setDataAppoinment } = useDataAppoinment();
   const [showModal, setShowModal] = useState(false);
   const [appointmentData, setAppointmentData] = useState({
     date: "",
     time: "",
     doctor: "",
+    image: "",
   });
+
   const [appointmentList, setAppointmentList] = useState([]);
   const [isDataIncomplete, setIsDataIncomplete] = useState(false);
   const [selectedTimeIndex, setSelectedTimeIndex] = useState(null);
@@ -164,18 +126,7 @@ const AppointmentPage = () => {
       !appointmentData.doctor
     ) {
       setIsDataIncomplete(true);
-      return;
-    }
 
-    const isDuplicate = appointmentList.some(
-      (appointment) =>
-        appointment.date === appointmentData.date &&
-        appointment.time === appointmentData.time &&
-        appointment.doctor === appointmentData.doctor
-    );
-
-    if (isDuplicate) {
-      alert("Appointment sudah ada. Pilih waktu atau dokter lain.");
       return;
     }
 
@@ -185,6 +136,7 @@ const AppointmentPage = () => {
   };
 
   const handleCancel = () => {
+    setAppointmentList([]);
     setAppointmentData({
       date: "",
       time: "",
@@ -192,16 +144,19 @@ const AppointmentPage = () => {
     });
     setIsDataIncomplete(false);
     setSelectedDoctor("");
-    setShowModal(false);
   };
 
   const handleConfirm = () => {
-    alert("Data Telah Dikonfirmasi");
+    console.log("appoinmet", appointmentData);
+    setDataAppoinment([...dataAppoinment, appointmentData]);
     setShowModal(false);
     resetAppointmentPage();
+    setSelectedDoctor("");
+    alert("Data sudah tersimpan.");
   };
 
   const resetAppointmentPage = () => {
+    setAppointmentList([]);
     setAppointmentData({
       date: "",
       time: "",
@@ -210,7 +165,6 @@ const AppointmentPage = () => {
     setSelectedDoctor("");
     setSelectedTimeIndex(null);
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAppointmentData({
@@ -341,7 +295,7 @@ const AppointmentPage = () => {
       >
         <div className="flex justify-center items-center  w-full  px-4 md:px-10 py-8 shadow-md absolute ">
           <div
-            className={selectedDoctor ? "w-[50%] p-5 " : "w-[80%] p-5 "}
+            className={selectedDoctor ? "w-[50%] p-5 " : "w-[50%] p-5 "}
             style={{ backgroundColor: "#FFFFFF" }}
           >
             <h1 className="text-3xl font-bold mb-2 text-color-primary90">
