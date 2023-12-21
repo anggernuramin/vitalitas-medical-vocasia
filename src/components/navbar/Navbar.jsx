@@ -92,6 +92,7 @@ const Navbar = () => {
             <Link to={"/riwayat-appointment"}>
               <Bell size={30} color="#B97375" weight="bold" />
             </Link>
+
             <span className="absolute -top-1 right-0 font-bold text-sm bg-color-primary10 text-color-primary90 py-0 px-1 m-0 rounded-full ">
               {yourLogin}
             </span>
