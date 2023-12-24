@@ -6,7 +6,7 @@ const Item = ({ Links, title }) => {
         <li key={link.name}>
           <a
             className="text-[#EEE] hover:text-[#FFFFFF] hover:font-semibold duration-300
-          text-sm cursor-pointer leading-6"
+          sm:text-sm cursor-pointer leading-6"
             href={link.link}
           >
             {link.name}

@@ -6,12 +6,12 @@ import Layout from "./Layout";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
-import { login } from "../../utils";
+import { getAccessToken, login } from "../../utils";
 import ModalBox from "./ModalBox";
 import { useContextUser } from "../../context/auth-context";
 
 const Login = () => {
-  const { user, onLogginSuccess } = useContextUser();
+  const { onLogginSuccess } = useContextUser();
   const [showPassword, setShowPassword] = useState(false);
   const [responseMessageError, setResponseMessageError] = useState("");
   const [notifUserLogin, setNotifUserLogin] = useState(false);
@@ -22,9 +22,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (user) {
-      console.log("user", user);
-      // navigate("/");
+    if (getAccessToken()) {
+      navigate("/");
     }
   }, []);
   const formik = useFormik({
@@ -51,7 +50,7 @@ const Login = () => {
       password: values.password,
     });
     if (response.error == false) {
-      onLogginSuccess(response.data);
+      await onLogginSuccess(response.data);
       navigate("/");
     } else {
       setResponseMessageError(response.message);
@@ -86,7 +85,7 @@ const Login = () => {
             placeholder="example@gmail.com"
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-red-500">
               {formik.errors.email}
             </p>
           ) : null}
@@ -121,7 +120,7 @@ const Login = () => {
             )}
 
             {formik.touched.password && formik.errors.password ? (
-              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-red-500">
                 {formik.errors.password}
               </p>
             ) : null}
@@ -140,7 +139,7 @@ const Login = () => {
               <p className="text-sm sm:text-base">Remember me</p>
             </div>
             {formik.touched.remember && formik.errors.remember && (
-              <p className="text-xs mt-1 sm:mt-0 sm:text-base  text-error">
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base  text-red-500">
                 {formik.errors.remember}
               </p>
             )}
