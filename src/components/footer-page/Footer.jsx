@@ -1,20 +1,17 @@
-import React from "react";
 import ItemsContainer from "./ItemsContainer";
 import { menuFooter } from "./Menus";
 import MenuFooter from "./MenuFooter";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#B97375] text-[#FFFFFF]">
-      <div className="md:flex md:justify-end md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7">
-        <div className="flex">
-          <div className="flex bg-white items-center mr-5 rounded px-2">
+    <footer className="bg-[#B97375] text-[#FFFFFF] mt-10">
+      <div className="md:flex md:justify-end md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7 ">
+        <div className="flex flex-col lg:flex-row space-y-2 sm:space-y-0 sm:space-x-2 px-7">
+          <div className="flex justify-between items-center bg-white min-[320px]:w-full md:w-[300px] mr-5 rounded px-2 mb-2 md:mb-0 sm:mr-5 lg:mb-0 min-[320px]:py-1 md:py-2.5 lg:py-1 ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
               fill="#333"
-              className="bi bi-envelope"
+              className="bi bi-envelope w-[10%]  h-[20px]"
               viewBox="0 0 16 16"
             >
               <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
@@ -22,13 +19,13 @@ const Footer = () => {
             <input
               type="email"
               placeholder="Enter your email to get the latest news..."
-              className="text-gray-800 sm:w-80 w-full sm:mr-5 mr-1 lg:mb-0 mb-4 py-2.5 focus:outline-none ml-70 bg-[#FFF] px-3"
+              className="min-[320px]:py-2 lg:py-1 text-gray-800 w-fullfocus:outline-none focus:border-0 bg-[#FFF] w-[85%] text-sm"
             />
           </div>
 
           <button
-            className="bg-black-400 hover:bg-gray-500 duration-300 px-5 py-2.5 font-[Poppins]
-            rounded-md text-white md:w-auto w-full bg-black"
+            className="bg-black-400 hover:bg-gray-500 duration-300 px-3 lg:px-5 py-2 lg:py-2.5 font-[Poppins]
+            rounded-md text-white w-full md:w-auto bg-black"
           >
             Subscribe
           </button>
@@ -36,14 +33,14 @@ const Footer = () => {
       </div>
       <ItemsContainer />
       <div
-        className="flex justify-between sm:grid-cols-2 lg:grid-cols-3 gap-10
-        text-center pt-2 text-[#FFFFFF] text-sm pb-8 inline-flex w-full px-5"
+        className="min-[320px]:justify-between min-[320px]:gap-1 sm:gap-10
+        text-center pt-2 text-[#FFFFFF] text-sm pb-8 w-full px-5"
       >
-        <span className="p-2 cursor-pointer mx-1.5 text-sm">
-          Vinzeta ©2023. All rights reserved.
-        </span>
         <MenuFooter Links={menuFooter} />
       </div>
+      <span className="block text-sm pb-5 text-center">
+        Vitalitas Medical ©2023. All rights reserved.
+      </span>
     </footer>
   );
 };

@@ -2,19 +2,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/display-name */
 import React, { useEffect } from "react";
-import { useContextUser } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
+import { getAccessToken } from "../utils";
 
 const AuthPrivateRoute = (Component) => {
   return () => {
     const navigate = useNavigate();
-    const { user } = useContextUser();
-    console.log("user", user);
     useEffect(() => {
-      if (!user) {
+      if (!getAccessToken()) {
         navigate("/login");
       }
-    }, [user]);
+    }, []);
     return <Component />;
   };
 };

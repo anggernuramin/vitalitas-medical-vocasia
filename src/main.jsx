@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/authentication/Login.jsx";
@@ -10,10 +9,11 @@ import { ContextProvider } from "./context/auth-context.jsx";
 import ReviewPage from "./pages/ReviewPage.jsx";
 import RiwayatPage from "./pages/RiwayatPage.jsx";
 import { DataAppoinmentProvider } from "./context/data-appoinment.jsx";
+import HomePage from "./pages/HomePage.jsx";
 const app = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomePage />,
   },
 
   {

@@ -2,6 +2,7 @@
 import Navbar from "../components/navbar/Navbar";
 import AllReview from "../components/AllReview";
 import Footer from "../components/footer-page/Footer";
+import AuthPrivateRoute from "../hoc/AuthPrivateRoute";
 
 const ReviewPage = () => {
   return (
@@ -13,4 +14,4 @@ const ReviewPage = () => {
   );
 };
 
-export default ReviewPage;
+export default AuthPrivateRoute(ReviewPage);

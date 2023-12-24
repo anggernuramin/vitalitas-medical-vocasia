@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "./Layout";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -7,7 +7,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Eye, EyeSlash } from "phosphor-react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../utils";
+import { getAccessToken, register } from "../../utils";
 import ModalBox from "./ModalBox";
 
 const Register = () => {
@@ -15,7 +15,11 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
   const [responseMessageError, setResponseMessageError] = useState("");
   const [notifUserLogin, setNotifUserLogin] = useState(false);
-
+  useEffect(() => {
+    if (getAccessToken()) {
+      navigate("/");
+    }
+  }, []);
   const navigate = useNavigate();
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -92,7 +96,7 @@ const Register = () => {
             placeholder="Your name"
           />
           {formik.touched.name && formik.errors.name ? (
-            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-red-500">
               {formik.errors.name}
             </p>
           ) : null}
@@ -111,7 +115,7 @@ const Register = () => {
             placeholder="example@gmail.com"
           />
           {formik.touched.email && formik.errors.email ? (
-            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+            <p className="text-xs mt-1 sm:mt-0 sm:text-base text-red-500">
               {formik.errors.email}
             </p>
           ) : null}
@@ -146,7 +150,7 @@ const Register = () => {
             )}
 
             {formik.touched.password && formik.errors.password ? (
-              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-error">
+              <p className="text-xs mt-1 sm:mt-0 sm:text-base text-red-500">
                 {formik.errors.password}
               </p>
             ) : null}
