@@ -11,6 +11,5 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .hero-home {
-    background-image: url(../public/dokter\ gigi.jpg);
-    /* position: fixed; */
+    background-image: url(dokter-gigi.jpg);
 }

@@ -9,21 +9,21 @@ const Servis = () => {
           yang muda hingga sulit
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div className="border flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm border-slate-500">
+          <div className="border border-gray-400 flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm ">
             <span className="mb-5">
               <User size={60} color="#B97375" weight="bold" />
             </span>
             <h3 className="font-bold text-xl">650+</h3>
             <p>Pasien</p>
           </div>
-          <div className="border flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm border-slate-500">
+          <div className="border border-gray-400 flex  justify-center items-center flex-col w-64 py-5 px-5 rounded-sm ">
             <span className="mb-5">
               <Files size={60} color="#B97375" weight="bold" />
             </span>
             <h3 className="font-bold text-xl">1200+</h3>
             <p>Appoinment</p>
           </div>
-          <div className="border flex justify-center items-center flex-col w-60 py-5 px-5 rounded-sm border-slate-500">
+          <div className="border border-gray-400 flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm ">
             <span className="mb-5">
               <Pizza size={60} color="#B97375" weight="bold" />
             </span>
@@ -31,7 +31,7 @@ const Servis = () => {
             <p>Pasien Happy</p>
           </div>
 
-          <div className="border flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm border-slate-500">
+          <div className="border border-gray-400 flex justify-center items-center flex-col w-64 py-5 px-5 rounded-sm ">
             <span className="mb-5">
               <Users size={60} color="#B97375" weight="bold" />
             </span>

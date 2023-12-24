@@ -5,6 +5,7 @@ import Navbar from "../navbar/Navbar";
 import Footer from "../footer-page/Footer";
 import { doctorInfoData } from "../../utils/ListDokter";
 import { useDataAppoinment } from "../../context/data-appoinment";
+import AuthPrivateRoute from "../../hoc/AuthPrivateRoute";
 
 const DoctorProfile = ({ onSelectDoctor, selectedDoctor }) => {
   const handleDoctorChange = (e) => {
@@ -32,8 +33,8 @@ const DoctorProfile = ({ onSelectDoctor, selectedDoctor }) => {
         style={{ backgroundColor: "white" }}
         defaultValue=""
       >
-        <option disabled value="" defaultValue>
-          Pilih dokter
+        <option disabled value="">
+          pilih dokter
         </option>
         <option value="drg. siti Kumala, SpKGA">drg. siti Kumala, SpKGA</option>
         <option value="drg. Randi Ardian, SpKG">drg.Randi Ardian, SpKG</option>
@@ -53,52 +54,43 @@ const DoctorProfile = ({ onSelectDoctor, selectedDoctor }) => {
 };
 
 const DoctorInfo = ({ selectedDoctor, onCloseInfo }) => {
-  const doctorInfoStyles = {
-    backgroundColor: "#B97375",
-    color: "white",
-    padding: "15px",
-    borderRadius: "15%",
-    position: "absolute",
-    top: "70%",
-    left: "87%",
-    width: "25%",
-    transform: "translate(-50%, -50%)",
-    zIndex: 999,
-    "@media (max-width: 768px)": {
-      width: "80%",
-      left: "50%",
-      transform: "translate(-50%, 0%)",
-    },
-  };
   const doctorData = doctorInfoData[selectedDoctor];
 
   return (
-    <div className="mt-4 doctor-info" style={doctorInfoStyles}>
+    <div className="mt-4 doctor-info bg-[#B97375] z-[999] md:w-[24%]  rounded-[5%]  md:min-h-[420px] min-[320px]:overflow-y-auto md:overflow-visible md:top-[71%] md:left-[87%]   min-[320px]:bottom-[0%] absolute  min-[320px]:top-[45%] min-[320px]:left-[50%] translate-x-[-50%] translate-y-[-50%] min-[320px]:w-[90%]">
       <button
-        className="absolute top-0 right-0 m-2 text-white cursor-pointer"
+        className="fixed min-[320px]:top-[-2%] min-[320px]:right-[-2%] md:top-[-7%] md:right-[-7%] m-4 ml-auto text-color-primary90 cursor-pointer w-[40px] h-[40px] rounded-full bg-white border-color-primary90 border-2 hover:bg-slate-300 transition-all "
         onClick={onCloseInfo}
       >
-        tutup
+        X
       </button>
-      <div className="w-full p-5">
-        <div
-          className="bg-cover bg-center h-32 rounded-full"
-          // style={{
-          //   // backgroundImage: url(`${doctorData.image}`),
-          //   border: "1px solid #fff",
-          // }}
-        >
-          <img src={doctorData?.image} />
+      <div className="flex p-5 md:flex-col">
+        <div className="w-full p-1">
+          <div
+            className="bg-cover bg-center h-28  flex items-center justify-center rounded-full"
+            style={{ overflow: "hidden" }}
+          >
+            <img
+              src={doctorData?.image}
+              style={{
+                width: "100px",
+                height: "100px",
+                objectFit: "cover",
+                borderRadius: "70%",
+              }}
+              alt={selectedDoctor}
+            />
+          </div>
         </div>
-      </div>
-      <div className="mt-4 ml-4">
-        <h2 className="text-xl font-bold">
-          Informasi dokter <br></br> {selectedDoctor}
-        </h2>
-        <p>Alamat: {doctorData.alamat}</p>
-        <p>Spesialisasi: {doctorData.spesialisasi}</p>
-        <p>Pengalaman: {doctorData.Pengalaman}</p>
-        <p>{doctorData.informasiLain}</p>
+        <div className="mt-4 ml-4">
+          <h2 className="min-[320px]:text-md md:text-xl font-bold min-[320px]:text-start md:text-center mb-4">
+            Informasi dokter <br></br> {selectedDoctor}
+          </h2>
+          <p>Alamat : {doctorData.alamat}</p>
+          <p>Spesialisasi : {doctorData.spesialisasi}</p>
+          <p>Pengalaman : {doctorData.Pengalaman}</p>
+          <p>{doctorData.informasiLain}</p>
+        </div>
       </div>
     </div>
   );
@@ -126,13 +118,12 @@ const AppointmentPage = () => {
       !appointmentData.doctor
     ) {
       setIsDataIncomplete(true);
-
       return;
     }
-
     setAppointmentList([...appointmentList, appointmentData]);
     setIsDataIncomplete(false);
     setShowModal(true);
+    setSelectedDoctor("");
   };
 
   const handleCancel = () => {
@@ -141,18 +132,19 @@ const AppointmentPage = () => {
       date: "",
       time: "",
       doctor: "",
+      image: "",
     });
     setIsDataIncomplete(false);
     setSelectedDoctor("");
+    setSelectedTimeIndex(null);
+    resetAppointmentPage();
   };
 
   const handleConfirm = () => {
-    console.log("appoinmet", appointmentData);
     setDataAppoinment([...dataAppoinment, appointmentData]);
     setShowModal(false);
     resetAppointmentPage();
     setSelectedDoctor("");
-    alert("Data sudah tersimpan.");
   };
 
   const resetAppointmentPage = () => {
@@ -161,6 +153,7 @@ const AppointmentPage = () => {
       date: "",
       time: "",
       doctor: "",
+      image: "",
     });
     setSelectedDoctor("");
     setSelectedTimeIndex(null);
@@ -181,6 +174,7 @@ const AppointmentPage = () => {
     setAppointmentData({
       ...appointmentData,
       doctor: selectedDoctor,
+      image: doctorInfoData[selectedDoctor]?.image || "",
     });
     setSelectedDoctor(selectedDoctor);
   };
@@ -234,8 +228,8 @@ const AppointmentPage = () => {
   };
 
   const renderModalContent = () => (
-    <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-      <div className="bg-white w-full md:max-w-md mx-auto rounded-sm overflow-hidden">
+    <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-slate-950 bg-opacity-50">
+      <div className="bg-white w-full min-[320px]:max-w-xs md:max-w-md mx-auto rounded-md overflow-hidden">
         <div className="p-4">
           <h2 className="text-2xl font-bold mb-2 text-[#B97375]">
             Konfirmasi Appointment
@@ -282,7 +276,7 @@ const AppointmentPage = () => {
       <div
         className="relative pt-[300px]"
         style={{
-          backgroundImage: "url('../../public/banner-appointment.jpeg')",
+          backgroundImage: "url('/banner-appointment.jpeg')",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
           minHeight: "70vh",
@@ -293,9 +287,13 @@ const AppointmentPage = () => {
           backgroundColor: "#FFFFFF",
         }}
       >
-        <div className="flex justify-center items-center  w-full  px-4 md:px-10 py-8 shadow-md absolute ">
+        <div className="min-[320px]:flex-col md:flex-row flex justify-center items-center  w-full  px-4 md:px-10 py-8  absolute">
           <div
-            className={selectedDoctor ? "w-[50%] p-5 " : "w-[50%] p-5 "}
+            className={
+              selectedDoctor
+                ? "min-[320px]:w-[90%] md:w-[50%] p-5 rounded-2xl min-[320px]:mt-[750px]   md:mt-[60px] shadow-md  md:py-8 "
+                : "min-[320px]:w-[90%] md:w-[50%] p-5 rounded-2xl  min-[320px]:mt-[350px]  md:mt-[60px] md:py-8 shadow-md"
+            }
             style={{ backgroundColor: "#FFFFFF" }}
           >
             <h1 className="text-3xl font-bold mb-2 text-color-primary90">
@@ -305,7 +303,10 @@ const AppointmentPage = () => {
               Pastikan jadwal yang anda pilih sudah benar{" "}
             </h2>
 
-            <DoctorProfile onSelectDoctor={handleDoctorSelect} />
+            <DoctorProfile
+              onSelectDoctor={handleDoctorSelect}
+              selectedDoctor={selectedDoctor}
+            />
 
             <label
               htmlFor="date"
@@ -331,7 +332,7 @@ const AppointmentPage = () => {
             {generateTimeTable()}
 
             {isDataIncomplete && (
-              <p className="text-sm text-red-500 mt-2 text-[#B97375]">
+              <p className="text-sm mt-2 text-[#B97375]">
                 Harap lengkapi semua data sebelum melanjutkan.
               </p>
             )}
@@ -370,4 +371,4 @@ const AppointmentPage = () => {
   );
 };
 
-export default AppointmentPage;
+export default AuthPrivateRoute(AppointmentPage);
