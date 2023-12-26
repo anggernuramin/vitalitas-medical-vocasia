@@ -1,7 +1,13 @@
 import { User, Files, Pizza, Users } from "phosphor-react";
+import { useEffect } from "react";
+import { aosConfig, initAos } from "../../utils/aosUtils";
+
 const Servis = () => {
+  useEffect(() => {
+    initAos();
+  }, []);
   return (
-    <div className="container mx-auto mt-24 min-w-full">
+    <div {...aosConfig()} className="container mx-auto mt-24 min-w-full">
       <section className="flex justify-center items-center flex-col gap-5">
         <h2 className="text-3xl font-bold mb-5">Kami Telah Melayani</h2>
         <p className="text-base mb-5 text-center">

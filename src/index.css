@@ -9,7 +9,145 @@
 }
 body {
     font-family: 'Roboto', sans-serif;
+    width: 100%;
+    height: min-content;
 }
 .hero-home {
     background-image: url(dokter-gigi.jpg);
+}
+.navbar{
+    background-color: white;
+    overflow: hidden;
+    width: 100vw;
+}
+
+.btn-contact {
+    font-size: 1.7rem;
+    padding: 1rem 3rem;
+    border-radius: 5rem;
+    margin-top: 1rem;
+    background: none;
+    color: #333;
+    cursor: pointer;
+    border: .2rem solid var(--orange);
+}
+
+.btn-contact:hover {
+    background: var(--orange);
+
+}
+
+.heading {
+    text-align: center;
+    font-size: 4rem;
+    padding: 0.5rem;
+    color: var(--orange);
+}
+
+.heading span {
+    font-family: calibri;
+    color: hsl(183, 82%, 44%);
+}
+
+.order {
+    
+}
+
+.order .row {
+   
+    border-radius: 1rem;
+}
+
+.order .row .image {
+   
+}
+
+.order .row .image img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.order .row form {
+    flex: .5 .5 60%;
+    background: #fff;
+    padding: 2rem;
+
+}
+
+.order .row form .box {
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color: black;
+    text-transform: none;
+    background: #f0f0f0;
+   border:  1px solid var(--orange);
+   border-radius: 10px;
+    outline:var(--orange);
+}
+
+.order .row form .box::placeholder {
+    text-transform: capitalize;
+}
+
+.order .row form .address {
+    resize: none;
+    height: 15rem;
+}
+
+
+.form button {
+    cursor: pointer;
+    background-color: var(--orange);
+    border: 2px sold #3498db;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-inner {
+    align-items: center;
+    position: relative;
+    padding: 22px;
+    width: 100%;
+    max-width: 640px;
+    background-color: #fff;
+}
+
+.popup-inner .ok-btn {
+    cursor: pointer;
+    background-color: var(--yellow);
+    border: 2px sold var(--yellow);
+    border-radius: 3rem;
+    background: none;
+    border: .2rem solid var(--yellow);
+    color: #333;
+    display: block;
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.popup-inner .ok-btn:hover {
+    background: var(--yellow);
+
 }
