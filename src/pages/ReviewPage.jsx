@@ -1,16 +1,13 @@
 // import React from "react";
-import Navbar from "../components/navbar/Navbar";
 import AllReview from "../components/AllReview";
-import Footer from "../components/footer-page/Footer";
 import AuthPrivateRoute from "../hoc/AuthPrivateRoute";
+import LayoutPages from "../layout/LayoutPages";
 
 const ReviewPage = () => {
   return (
-    <>
-      <Navbar />
+    <LayoutPages>
       <AllReview />
-      <Footer />
-    </>
+    </LayoutPages>
   );
 };
 

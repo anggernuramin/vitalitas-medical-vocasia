@@ -4,7 +4,7 @@ import MenuFooter from "./MenuFooter";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#B97375] text-[#FFFFFF] mt-10">
+    <footer className="bg-[#B97375] text-[#FFFFFF] pt-10">
       <div className="md:flex md:justify-end md:items-center sm:px-12 px-4 bg-[#ffffff19] py-7 ">
         <div className="flex flex-col lg:flex-row space-y-2 sm:space-y-0 sm:space-x-2 px-7">
           <div className="flex justify-between items-center bg-white min-[320px]:w-full md:w-[300px] mr-5 rounded px-2 mb-2 md:mb-0 sm:mr-5 lg:mb-0 min-[320px]:py-1 md:py-2.5 lg:py-1 ">

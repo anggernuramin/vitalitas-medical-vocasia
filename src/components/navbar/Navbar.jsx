@@ -22,7 +22,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar fixed z-50 bg-white">
+    <div className="navbar fixed z-50 w-full">
       <div className="navbar-start hidden lg:flex ml-10">
         <ul className="menu menu-horizontal px-1 font-bold">
           <li>

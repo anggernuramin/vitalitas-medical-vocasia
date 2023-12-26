@@ -10,6 +10,7 @@ import ReviewPage from "./pages/ReviewPage.jsx";
 import RiwayatPage from "./pages/RiwayatPage.jsx";
 import { DataAppoinmentProvider } from "./context/data-appoinment.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 const app = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,7 @@ const app = createBrowserRouter([
   { path: "/appointment", element: <AppointmentPage /> },
   { path: "/all-reviews", element: <ReviewPage /> },
   { path: "/riwayat-appointment", element: <RiwayatPage /> },
+  { path: "/contact-email", element: <ContactPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
