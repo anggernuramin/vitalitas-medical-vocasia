@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { aosConfig, initAos } from "../../utils/aosUtils";
 
 const Profile = () => {
+  useEffect(() => {
+    initAos();
+  }, []);
   return (
     <>
-      <div className="flex flex-wrap items-center justify-between bg-[#F2F4F8] px-20 pt-7 pb-14 w-full">
+      <div className=" overflow-hidden flex flex-wrap items-center justify-between bg-[#F2F4F8] px-20 pt-7 pb-14 w-full">
         <div className="w-full flex justify-end mb-10">
           <NavLink
             className="border-none px-[6px] py-[3px] rounded bg-color-primary90 mt-5 text-white hover:bg-pink-400 text-xs lg:text-sm"
@@ -12,7 +17,10 @@ const Profile = () => {
             Semua Review
           </NavLink>
         </div>
-        <div className="text-center rounded overflow-hidden border bg-white p-[40px] w-full lg:w-[45%] mb-5 lg:mb-0 hover:bg-transparent">
+        <div
+          {...aosConfig("fade-right")}
+          className="text-center rounded overflow-hidden border bg-white p-[40px] w-full lg:w-[45%] mb-5 lg:mb-0 hover:bg-transparent"
+        >
           <p className="text-gray-500">
             Dokternya sabar banget dan selalu ngedepanin kenyamanan dari
             pasiennya
@@ -32,7 +40,10 @@ const Profile = () => {
           <p className="text-[13px]">Role</p>
         </div>
 
-        <div className="text-center rounded overflow-hidden border bg-white p-[40px] w-full lg:w-[45%] hover:bg-transparent">
+        <div
+          {...aosConfig("fade-left")}
+          className="text-center rounded overflow-hidden border bg-white p-[40px] w-full lg:w-[45%] hover:bg-transparent"
+        >
           <p className="text-gray-500">
             Tempatnya sangat nyaman dan bersih, serta pelayananya yang bagus
           </p>

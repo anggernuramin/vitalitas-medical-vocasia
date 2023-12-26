@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { aosConfig, initAos } from "../../utils/aosUtils";
 
 const Faq = () => {
+  useEffect(() => {
+    initAos();
+  }, []);
   return (
     <>
       <br></br>
-      <div className="container flex justify-center items-center flex-col">
-        <div className="min-[320px]:w-[80%]  ">
-          <h1 className="min-[320px]:text-2xl md:text-3xl font-bold text-center">
+      <section className="container flex justify-center items-center flex-col mb-5">
+        <div {...aosConfig()} className="min-[320px]:w-[80%]  ">
+          <h1 className="min-[320px]:text-2xl md:text-3xl font-bold text-center mb-5">
             Frequently Asked Questions
           </h1>
           <br></br>
@@ -78,7 +82,7 @@ const Faq = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
       <br></br>
       <br></br>
     </>

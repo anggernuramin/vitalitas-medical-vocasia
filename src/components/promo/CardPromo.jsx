@@ -2,13 +2,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Check } from "phosphor-react";
+import { useEffect } from "react";
+import { initAos, aosConfig } from "../../utils/aosUtils";
 
 const CardPromo = () => {
+  useEffect(() => {
+    initAos();
+  }, []);
   return (
-    <div className="container mb-10">
-      <header className="mb-10 text-center">
+    <div {...aosConfig()} className="container mb-10 ">
+      <header className="mb-[70px] text-center">
         <h1 className="text-3xl font-semibold">Promo</h1>
-        <p className="text-color-coolGray90 mt-3 ">
+        <p className="text-color-coolGray90 mt-5 ">
           Dapatkan promo di bawah ini dengan melakukan appoinment di bulan
           September
         </p>
