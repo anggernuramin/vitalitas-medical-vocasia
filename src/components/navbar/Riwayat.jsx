@@ -21,7 +21,7 @@ const Riwayat = () => {
                   <h2 className="card-title ">{d.doctor}</h2>
                   <div className="flex flex-col">
                     <p>Tanggal : {d.date}</p>
-                    <p>Jam : {d.date}</p>
+                    <p>Jam : {d.time}</p>
                   </div>
                 </div>
               </div>
