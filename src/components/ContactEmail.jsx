@@ -36,11 +36,11 @@ const ContactEmail = () => {
   return (
     <>
       <div className="hero min-h-screen bg-[#F2F4F8]">
-        <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="hero-content flex-col lg:flex-row-reverse mt-5 sm:mt-16">
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="card-body bg-white w-[480px] rounded-sm shadow-md"
+            className="card-body bg-white min-[320px]:w-[300px] sm:w-[480px] rounded-sm shadow-md"
           >
             <div className="form-control">
               <label className="label" id="label-nama">
