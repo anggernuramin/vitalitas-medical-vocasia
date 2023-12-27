@@ -1,11 +1,11 @@
-# Dental Clinic
-  Website Dental Clinic merupakan website yang difungsikan untuk proses penjadwalan pasien dan konsultasi secara online. 
+# Vitalitas Medical
+  Website Vitalitas Medical merupakan website yang difungsikan untuk proses penjadwalan pasien dan konsultasi secara online. 
 
 ## Instalasi
 Jika Anda baru di project ini, silakan ikuti langkah-langkah instalasi berikut:
 1. Clone project dari github ke local
     ```bash
-    git clone https://github.com/anggernuramin/dental-clinic-vocasia-fe4.git
+    git clone https://github.com/anggernuramin/vitalitas-medical-vocasia-fe4.git
     ```
 
 2. Install Node.js 
