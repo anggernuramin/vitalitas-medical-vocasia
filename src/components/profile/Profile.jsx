@@ -37,7 +37,7 @@ const Profile = () => {
             </svg>
           </div>
           <h6 className="font-semibold text-[#333]">Santi Ismatul</h6>
-          <p className="text-[13px]">Role</p>
+          <p className="text-[13px]">Pasien</p>
         </div>
 
         <div
@@ -59,7 +59,7 @@ const Profile = () => {
             </svg>
           </div>
           <h6 className="font-semibold text-[#333]">Vindi Aprilia</h6>
-          <p className="text-[13px]">Role</p>
+          <p className="text-[13px]">Pasien</p>
         </div>
       </div>
     </>
