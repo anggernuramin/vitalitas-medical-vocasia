@@ -11,7 +11,7 @@ const Profile = () => {
       <div className=" overflow-hidden flex flex-wrap items-center justify-between bg-[#F2F4F8] px-20 pt-7 pb-14 w-full">
         <div className="w-full flex justify-end mb-10">
           <NavLink
-            className="border-none px-[6px] py-[3px] rounded bg-color-primary90 mt-5 text-white hover:bg-pink-400 text-xs lg:text-sm"
+            className="text-color-primary90 text-[16px] border-b-[2px] border-color-primary90"
             to="/all-reviews"
           >
             Semua Review

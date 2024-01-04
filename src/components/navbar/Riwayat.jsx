@@ -6,7 +6,7 @@ const Riwayat = () => {
   };
 
   return (
-    <div className="py-[100px] w-full ">
+    <div className="py-[100px] w-full bg-[#F2F4F8]">
       {dataAppoinment == "" ? (
         <div className="font-bold mx-16">Data Kosong</div>
       ) : (

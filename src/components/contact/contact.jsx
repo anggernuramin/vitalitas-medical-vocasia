@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div
       {...aosConfig()}
-      className="container flex flex-wrap items-center justify-between pr-10 pt-10 pb-10 pl-3"
+      className="container flex flex-wrap items-center justify-between pr-10 pt-10 pb-10 pl-3 bg-[#F2F4F8]"
     >
       <div className="w-full lg:w-2/3 p-8">
         <h2 className="pb-2 text-[#333] font-bold text-3xl cursor-pointer">
@@ -27,8 +27,11 @@ const Contact = () => {
         </p>
       </div>
       <div className="flex pl-8 h-[5px] lg:h-[10px]">
-        <Link className="flex items-center border px-8 lg:px-6 bg-[#B97375] py-3 lg:py-5 ml-2 text-[#FFF] hover:bg-pink-300 text-xs">
-          <Link to={"/contact-email"}>Chat Email</Link>
+        <Link
+          className="flex items-center border px-8 lg:px-6 bg-[#B97375] py-3 lg:py-5 ml-2 text-[#FFF] hover:shadow-2xl text-xs"
+          to={"/contact-email"}
+        >
+          Chat Email
         </Link>
       </div>
     </div>
