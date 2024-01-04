@@ -9,7 +9,7 @@ const Contact = () => {
   return (
     <div
       {...aosConfig()}
-      className="container flex flex-wrap items-center justify-between pr-10 pt-10 pb-10 pl-3 bg-[#F2F4F8]"
+      className="container flex flex-wrap items-center justify-between pr-10 pt-10 pb-10 pl-3 "
     >
       <div className="w-full lg:w-2/3 p-8">
         <h2 className="pb-2 text-[#333] font-bold text-3xl cursor-pointer">
