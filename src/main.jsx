@@ -11,6 +11,7 @@ import RiwayatPage from "./pages/RiwayatPage.jsx";
 import { DataAppoinmentProvider } from "./context/data-appoinment.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 const app = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,7 @@ const app = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
+  { path: "/profile", element: <ProfilePage /> },
   { path: "/appointment", element: <AppointmentPage /> },
   { path: "/all-reviews", element: <ReviewPage /> },
   { path: "/riwayat-appointment", element: <RiwayatPage /> },

@@ -92,13 +92,13 @@ const Navbar = () => {
             )}
           </button>
 
-          <span>
+          <Link to={"/profile"}>
             <User
               className="min-[320px]:text-xl md:text-3xl"
               color="#B97375"
               weight="bold"
             />
-          </span>
+          </Link>
 
           <button onClick={logout} className="">
             <span>
@@ -112,18 +112,18 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end grow mr-4 lg:mr-10 flex-row gap-2 flex ">
-          <a
-            href="/login"
+          <Link
+            to={"/login"}
             className="btn hover:bg-white bg-white border-none text-color-primary90"
           >
             Login
-          </a>
-          <a
-            href="/register"
+          </Link>
+          <Link
+            to={"/register"}
             className="btn hover:bg-color-primary90 bg-color-primary90 text-color-coolGray10 rounded-none"
           >
             Sign Up
-          </a>
+          </Link>
         </div>
       )}
     </div>
