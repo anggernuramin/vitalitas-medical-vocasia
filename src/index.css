@@ -13,7 +13,7 @@ body {
     height: min-content;
 }
 .hero-home {
-    background-image: url(dokter-gigi.jpg);
+    background-image: url('/dokter-gigi.jpg');
 }
 .navbar{
     background-color: white;
