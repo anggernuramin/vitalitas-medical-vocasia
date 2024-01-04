@@ -9,7 +9,7 @@ function Popup(props) {
   };
 
   return props.trigger ? (
-    <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-slate-950 bg-opacity-50">
+    <div className="fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-slate-950 bg-opacity-50">
       <div className="bg-white w-full min-[320px]:max-w-xs md:max-w-md mx-auto rounded-md overflow-hidden">
         <div className="p-4">
           <h2 className="text-xl font-semibold  text-[#B97375] text-center">

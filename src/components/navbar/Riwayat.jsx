@@ -8,12 +8,12 @@ const Riwayat = () => {
   return (
     <div className="py-[100px] w-full bg-[#F2F4F8]">
       {dataAppoinment == "" ? (
-        <div className="font-bold mx-16">Data Kosong</div>
+        <div className="font-bold mx-16 text-center mt-20">Data Kosong</div>
       ) : (
         dataAppoinment.map((d) => (
           <>
             <div className="flex justify-center items-center flex-col">
-              <div className="card card-side bg-base-100 shadow-xl mb-2 w-1/2">
+              <div className="card card-side bg-white shadow-xl mb-5 w-1/2">
                 <figure>
                   <img src={d.image} style={imagestyle} alt="Movie" />
                 </figure>
