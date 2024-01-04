@@ -14,10 +14,12 @@ const Navbar = () => {
     if (localStorage.getItem("accessToken") != null) {
       alert("Failed");
     } else {
-      alert("Are you sure Log out ?");
-      setUser({});
-      setDataAppoinment([]);
-      navigate("/");
+      const konfirmasiLogout = confirm("Are you sure Log out ?");
+      if (konfirmasiLogout) {
+        setUser({});
+        setDataAppoinment([]);
+        navigate("/");
+      }
     }
   };
 
